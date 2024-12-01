@@ -1,5 +1,4 @@
-
-
+# Code snippets have comments describing how each algorithm works, its time/space complexity, and when to use it. 
 # sorting_algorithms.py
 
 # 1. Bubble Sort
