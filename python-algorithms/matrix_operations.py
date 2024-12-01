@@ -1,4 +1,19 @@
 # Code snippets have comments describing how each algorithm works, its time/space complexity, and when to use it. 
+# Features and Scenarios
+# Matrix Addition and Subtraction:
+# Use for element-wise operations on matrices of the same dimensions.
+# Matrix Multiplication:
+# Core operation for linear algebra, transformations, and machine learning.
+# Transpose:
+# Useful for switching perspectives between rows and columns.
+# Determinant:
+# Helps determine matrix invertibility.
+# Identity Matrix:
+# Acts as a neutral element in matrix multiplication.
+# Diagonal Extraction:
+# Retrieves key elements for square or rectangular matrices.
+# Inverse:
+# Crucial for solving linear equations and transformations.
 
 # matrix_operations.py
 
