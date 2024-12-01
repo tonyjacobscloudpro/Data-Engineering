@@ -1,3 +1,11 @@
+# Features Highlighted:
+# Basic Counter Loops: Demonstrates increment and iteration logic.
+# Conditionals (break/continue): Breaks out of loops or skips iterations.
+# Iterating Structures: Loops through lists, dictionaries, and zipped structures.
+# User Inputs: Includes commented examples for interactive loops.
+# Advanced Constructs: Demonstrates usage of all(), any(), and nested loops.
+# You can expand on these examples with more scenarios tailored to specific use cases. Let me know if you want additional examples!
+
 # loop_conditions.py
 
 # 1. Basic while loop with a counter
