@@ -8,6 +8,10 @@
 # Trend Analysis:
 # Provides insights such as the number of peaks and valleys, average prices at peaks and valleys, and extrema.
 
+# numpy, matplotlib, and scipy must also be installed.
+# python
+# pip install numpy pandas matplotlib
+
 # stock_price_trends.py
 
 import numpy as np
