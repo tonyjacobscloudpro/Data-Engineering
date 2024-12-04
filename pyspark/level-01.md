@@ -1,5 +1,5 @@
 
-# PySpark lelel 1 Code Examples
+# PySpark level 1 Code Examples
 
 ## 1. Create a SparkSession
 ```python
