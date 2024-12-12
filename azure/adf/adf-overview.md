@@ -75,8 +75,6 @@ Azure Data Factory (ADF) is a cloud-based data integration service that allows y
 4. **Data Delivery**: Move transformed data to analytics or storage services.
 5. **Monitoring**: Track pipeline execution through the monitoring dashboard.
 
-![ADF Architecture](https://learn.microsoft.com/en-us/azure/data-factory/media/concepts-pipelines/pipelines-overview.png)
-
 ---
 
 ## Benefits
