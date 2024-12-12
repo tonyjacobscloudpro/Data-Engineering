@@ -107,9 +107,6 @@ Azure Data Factory (ADF) is a cloud-based data integration service that allows y
 
 ## Resources
 - [Azure Data Factory Documentation](https://learn.microsoft.com/en-us/azure/data-factory/)
-- [Quickstart: Create a Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal)
-- [Best Practices for ADF](https://learn.microsoft.com/en-us/azure/data-factory/introduction-best-practices)
-
 ---
 
 ## Conclusion
