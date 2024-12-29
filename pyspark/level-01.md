@@ -1,5 +1,5 @@
 
-# PySpark level 1 Code Examples
+# PySpark Level 1 Code Examples
 
 ## 1. Create a SparkSession
 ```python
@@ -7,12 +7,13 @@ from pyspark.sql import SparkSession
 
 # Initialize SparkSession
 spark = SparkSession.builder \
-    .appName("PySpark Beginner Examples") \
-    .master("local[*]") \
+    .appName("PySpark Beginner Examples") \  # Sets a name for your application
+    .master("local[*]") \  # Specifies the master as local with all available cores
     .getOrCreate()
 
 print("Spark Session Created!")
 ```
+**Explanation**: A SparkSession is the entry point to using PySpark. It allows you to create DataFrames, run SQL queries, and perform distributed computations.
 
 ---
 
@@ -21,20 +22,10 @@ print("Spark Session Created!")
 data = [("Alice", 25), ("Bob", 30), ("Cathy", 28)]
 columns = ["Name", "Age"]
 
-df = spark.createDataFrame(data, columns)
-df.show()
+df = spark.createDataFrame(data, columns)  # Create DataFrame from a list of tuples
+df.show()  # Display the DataFrame content
 ```
-
-**Output:**
-```
-+-----+---+
-| Name|Age|
-+-----+---+
-|Alice| 25|
-|  Bob| 30|
-|Cathy| 28|
-+-----+---+
-```
+**Explanation**: This creates a DataFrame using a Python list of tuples and defines column names. `show()` prints the first 20 rows of the DataFrame.
 
 ---
 
@@ -42,8 +33,12 @@ df.show()
 ```python
 # Replace 'path/to/your/file.csv' with your file path
 df = spark.read.csv("path/to/your/file.csv", header=True, inferSchema=True)
+
 df.show()
 ```
+**Explanation**: The `read.csv()` function loads a CSV file into a DataFrame. 
+- `header=True` reads the first row as column names.
+- `inferSchema=True` automatically infers the data types of the columns.
 
 ---
 
@@ -51,9 +46,14 @@ df.show()
 ```python
 df.printSchema()  # Print the schema of the DataFrame
 df.select("Name").show()  # Select specific column(s)
-df.filter(df.Age > 25).show()  # Filter rows based on condition
-df.groupBy("Age").count().show()  # Group and aggregate
+df.filter(df.Age > 25).show()  # Filter rows where Age > 25
+df.groupBy("Age").count().show()  # Group by Age and calculate counts
 ```
+**Explanation**:
+- `printSchema()` displays the structure of the DataFrame (column names and data types).
+- `select()` is used to retrieve specific columns.
+- `filter()` filters rows based on conditions.
+- `groupBy()` performs grouping and allows aggregation functions like `count()`.
 
 ---
 
@@ -62,6 +62,8 @@ df.groupBy("Age").count().show()  # Group and aggregate
 df.write.parquet("output/path", mode="overwrite")
 print("Data written to Parquet successfully!")
 ```
+**Explanation**: Writes the DataFrame to a Parquet file, a columnar storage format. 
+- `mode="overwrite"` ensures existing files in the path are replaced.
 
 ---
 
@@ -74,6 +76,7 @@ df.createOrReplaceTempView("people")
 result = spark.sql("SELECT Name, Age FROM people WHERE Age > 25")
 result.show()
 ```
+**Explanation**: Converts a DataFrame into a temporary SQL view that allows running SQL queries directly on the data.
 
 ---
 
@@ -85,17 +88,7 @@ from pyspark.sql.functions import col
 df = df.withColumn("Age_in_5_years", col("Age") + 5)
 df.show()
 ```
-
-**Output:**
-```
-+-----+---+-------------+
-| Name|Age|Age_in_5_years|
-+-----+---+-------------+
-|Alice| 25|           30|
-|  Bob| 30|           35|
-|Cathy| 28|           33|
-+-----+---+-------------+
-```
+**Explanation**: `withColumn()` adds or modifies columns in a DataFrame. In this case, it calculates a new column based on the existing "Age" column.
 
 ---
 
@@ -105,6 +98,7 @@ df.show()
 df = spark.read.json("path/to/your/file.json")
 df.show()
 ```
+**Explanation**: Loads a JSON file into a DataFrame. PySpark automatically parses the JSON structure.
 
 ---
 
@@ -117,6 +111,9 @@ df = df.dropna()
 df = df.fillna({"Age": 0, "Name": "Unknown"})
 df.show()
 ```
+**Explanation**:
+- `dropna()` removes rows with null values.
+- `fillna()` replaces missing values with a default value.
 
 ---
 
@@ -127,8 +124,9 @@ rdd = spark.sparkContext.parallelize([1, 2, 3, 4, 5])
 
 # Perform operations on RDD
 rdd = rdd.map(lambda x: x * 2)
-print(rdd.collect())  # [2, 4, 6, 8, 10]
+print(rdd.collect())  # Collect results back to the driver
 ```
+**Explanation**: Demonstrates Resilient Distributed Dataset (RDD), a lower-level abstraction for distributed data processing.
 
 ---
 
@@ -137,6 +135,7 @@ print(rdd.collect())  # [2, 4, 6, 8, 10]
 df.write.csv("output/csv/path", header=True, mode="overwrite")
 print("Data written to CSV successfully!")
 ```
+**Explanation**: Writes the DataFrame to a CSV file, preserving column headers.
 
 ---
 
@@ -144,15 +143,7 @@ print("Data written to CSV successfully!")
 ```python
 df.agg({"Age": "avg", "Age": "max"}).show()
 ```
-
-**Output:**
-```
-+--------+
-|max(Age)|
-+--------+
-|      30|
-+--------+
-```
+**Explanation**: Performs aggregation functions (`avg`, `max`) on the "Age" column.
 
 ---
 
@@ -166,17 +157,7 @@ df2 = spark.createDataFrame(data2, columns2)
 joined_df = df.join(df2, on="Name", how="inner")
 joined_df.show()
 ```
-
-**Output:**
-```
-+-----+---+------+
-| Name|Age|Gender|
-+-----+---+------+
-|Alice| 25|     F|
-|  Bob| 30|     M|
-|Cathy| 28|     F|
-+-----+---+------+
-```
+**Explanation**: Joins two DataFrames on the "Name" column using an inner join.
 
 ---
 
@@ -188,6 +169,9 @@ df.show()
 df.persist()  # Persist DataFrame in memory and disk
 df.show()
 ```
+**Explanation**:
+- `cache()` stores the DataFrame in memory for faster repeated access.
+- `persist()` provides flexibility for storage levels (e.g., memory, disk).
 
 ---
 
@@ -196,3 +180,6 @@ df.show()
 spark.stop()
 print("Spark Session Stopped!")
 ```
+**Explanation**: Stops the SparkSession to release resources when the application is done.
+
+---
