@@ -51,7 +51,9 @@ To start using PySpark, you'll need to set up the Spark environment. Follow thes
     ```python
     from pyspark.sql import SparkSession
 
-    spark = SparkSession.builder         .appName("My PySpark App")         .getOrCreate()
+    spark = SparkSession.builder\
+        .appName("My PySpark App")\
+        .getOrCreate()
     ```
 
 3. **Create a Simple DataFrame**:
